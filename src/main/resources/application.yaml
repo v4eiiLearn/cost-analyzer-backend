@@ -1,0 +1,39 @@
+server:
+  port: 8080
+spring:
+  liquibase:
+    enabled: true
+    url: jdbc:postgresql://localhost:5432/cost
+    user: postgres
+    password: postgres
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        format_sql: true
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  datasource:
+    url: jdbc:postgresql://localhost:5432/cost
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+#    hikari:
+#      jdbc-url: jdbc:h2:file:///./tmp/test-database1
+#      username: sa
+#      password:
+#      driver-class-name: org.h2.Driver
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5432/cost
+    username: postgres
+    password: postgres
+  application:
+    name: cost-analyzer-backend
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: ${KEYCLOAK_REALM_CERT_URL:http://localhost:8484/auth/realms/cost_realm/protocol/openid-connect/certs}
